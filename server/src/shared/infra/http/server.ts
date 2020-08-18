@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import cors from 'cors';
 import express from 'express';
 import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 
