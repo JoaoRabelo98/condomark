@@ -3,5 +3,6 @@ import ICreateCategoryDTO from '../dtos/ICreateCategoryDTO';
 
 export default interface IAppointmentsRepository {
   create(data: ICreateCategoryDTO): Promise<Category>;
-  update(data: Category): Promise<Category | undefined>;
+  findByName(name: string): Promise<Category | undefined>;
+  update(data: Category): Promise<Category>;
 }

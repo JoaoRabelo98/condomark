@@ -7,10 +7,22 @@ import Category from '../infra/typeorm/entities/Category';
 class CreateCategoryService {
   constructor(
     @inject('CategoriesRepository')
-    private aregoriesRepository: ICategoriesRepository,
+    private caregoriesRepository: ICategoriesRepository,
   ) {}
 
-  public async execute(data: ICreateCategoryDTO): Promise<Category> {}
+  public async execute(data: ICreateCategoryDTO): Promise<Category> {
+    const category_exists = await this.caregoriesRepository.findByName(
+      data.name,
+    );
+
+    if (category_exists) {
+      throw new Error();
+    }
+
+    const category_created = await this.caregoriesRepository.create(data);
+
+    return category_created;
+  }
 }
 
 export default CreateCategoryService;

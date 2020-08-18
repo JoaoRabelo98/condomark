@@ -17,6 +17,14 @@ class FakeCategoryRepository implements ICategoryRepository {
     return category;
   }
 
+  public async findByName(name: string): Promise<Category | undefined> {
+    const category_finded = await this.categories.find(
+      category => category.name === name,
+    );
+
+    return category_finded;
+  }
+
   public async update(category_to_update: Category): Promise<Category> {
     const category_index = this.categories.findIndex(
       category => category.id === category_to_update.id,

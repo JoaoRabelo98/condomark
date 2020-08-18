@@ -10,6 +10,12 @@ class CategoriesRepository implements ICategoriesRepository {
     this.categoriesRepository = getRepository(Category);
   }
 
+  public async findByName(name: string): Promise<Category | undefined> {
+    const category_finded = await this.categoriesRepository.findOne({ name });
+
+    return category_finded;
+  }
+
   public async create(
     category_to_create: ICreateCategoryDTO,
   ): Promise<Category> {
