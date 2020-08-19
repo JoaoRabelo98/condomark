@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import AppError from '@shared/errors/AppError';
 import ICategoriesRepository from '../repositories/ICategoriesRepository';
 import ICreateCategoryDTO from '../dtos/ICreateCategoryDTO';
 import Category from '../infra/typeorm/entities/Category';
@@ -16,7 +17,7 @@ class CreateCategoryService {
     );
 
     if (category_exists) {
-      throw new Error();
+      throw new AppError('Category selected non existing');
     }
 
     const category_created = await this.caregoriesRepository.create(data);

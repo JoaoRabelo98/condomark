@@ -1,4 +1,5 @@
 import ICreateCategoryDTO from '@modules/categories/dtos/ICreateCategoryDTO';
+import { uuid } from 'uuidv4';
 import Category from '@modules/categories/infra/typeorm/entities/Category';
 import ICategoryRepository from '../ICategoriesRepository';
 
@@ -10,7 +11,7 @@ class FakeCategoryRepository implements ICategoryRepository {
   ): Promise<Category> {
     const category = new Category();
 
-    Object.assign(category, category_to_create);
+    Object.assign(category, category_to_create, { id: uuid() });
 
     this.categories.push(category);
 
