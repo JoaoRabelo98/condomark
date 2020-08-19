@@ -17,7 +17,7 @@ class CreateCategoryService {
     );
 
     if (category_exists) {
-      throw new AppError('Category selected non existing');
+      throw new AppError('Category selected is already registered');
     }
 
     const category_created = await this.caregoriesRepository.create(data);
